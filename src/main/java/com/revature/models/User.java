@@ -26,7 +26,6 @@ public class User {
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.username = username;
-//		this.password = password;
 		this.email = email;
 		this.role_id = role_id;
 	}
