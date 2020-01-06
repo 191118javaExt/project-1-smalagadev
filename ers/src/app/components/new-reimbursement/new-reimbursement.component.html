@@ -1,0 +1,37 @@
+<h1>New Reimbursement</h1>
+
+<div class="row">
+   <form class="col s12">
+     <div class="row">
+      <div class="input-field col s8">
+        <textarea id="textarea1" class="materialize-textarea" date-length="250"></textarea>
+        <label for="description">Description</label>
+      </div>
+       <div class="input-field col s2">
+        <select>
+          <option value="" disabled selected>Choose your option</option>
+          <option value="1">Lodging</option>
+          <option value="2">Travel</option>
+          <option value="3">Food</option>
+          <option value="4">Other</option>
+        </select>
+        <label>Type</label>
+      </div>
+       <div class="input-field col s2">
+         <input id="amount" type="number" class="validate" min="0.00" step="0.01">
+         <label for="amount">Amount</label>
+       </div>
+     </div>
+     <div class="row">
+       <div class="file-field input-field">
+        <div class="btn">
+          <span>File</span>
+          <input type="file">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
+      </div>
+     </div>
+   </form>
+ </div>
