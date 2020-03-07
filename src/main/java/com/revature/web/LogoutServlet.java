@@ -19,8 +19,9 @@ public class LogoutServlet extends HttpServlet {
 		HttpSession session = req.getSession(false);
 		
 		if(session != null) {
-			logger.info((String) session.getAttribute("username"));
+			logger.info("Successfully logged out");
 			session.invalidate();
+
 		}
 		
 		res.setStatus(200);

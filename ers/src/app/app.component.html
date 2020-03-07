@@ -1,4 +1,5 @@
-<app-navbar [isLoggedIn]="isLoggedIn"></app-navbar>
-<app-login-form (loggedIn)="isLoggedIn=$event"></app-login-form>
+<app-navbar></app-navbar>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
 <app-logout-form (loggedOut)="isLoggedIn=$event"></app-logout-form>
-<router-outlet></router-outlet>

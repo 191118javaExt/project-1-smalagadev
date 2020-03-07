@@ -1,36 +1,55 @@
-<h1>New Reimbursement</h1>
+<h3>New Reimbursement</h3>
 
 <div class="row">
    <form class="col s12">
      <div class="row">
-      <div class="input-field col s8">
-        <textarea id="textarea1" class="materialize-textarea" date-length="250"></textarea>
+      <div class="input-field col s6">
+        <textarea id="textarea1" [(ngModel)]="description" class="materialize-textarea" date-length="250" name="description"></textarea>
         <label for="description">Description</label>
       </div>
-       <div class="input-field col s2">
-        <select>
-          <option value="" disabled selected>Choose your option</option>
-          <option value="1">Lodging</option>
-          <option value="2">Travel</option>
-          <option value="3">Food</option>
-          <option value="4">Other</option>
-        </select>
-        <label>Type</label>
+       <div class="input-field col s4">
+        <span>
+          <label>
+            <input [(ngModel)]="type" class="with-gap" name="type" type="radio" value="0"/>
+            <span>Lodging</span>
+          </label>
+        </span>
+        <span>
+          <label>
+            <input [(ngModel)]="type" class="with-gap" name="type" type="radio" value="1"/>
+            <span>Travel</span>
+          </label>
+        </span>
+        <span>
+          <label>
+            <input [(ngModel)]="type" class="with-gap" name="type" type="radio" value="2"/>
+            <span>Food</span>
+          </label>
+        </span>
+        <span>
+          <label>
+            <input [(ngModel)]="type" class="with-gap" name="type" type="radio" value="3"/>
+            <span>Other</span>
+          </label>
+        </span>
       </div>
        <div class="input-field col s2">
-         <input id="amount" type="number" class="validate" min="0.00" step="0.01">
+         <input id="amount" [(ngModel)]="amount" type="number" class="validate" min="0.00" step="0.01" name="amount">
          <label for="amount">Amount</label>
        </div>
      </div>
      <div class="row">
-       <div class="file-field input-field">
+       <div class="file-field input-field col s9">
         <div class="btn">
           <span>File</span>
-          <input type="file">
+          <input type="file" (change)="onFileSelected($event)">
         </div>
         <div class="file-path-wrapper">
-          <input class="file-path validate" type="text">
+          <input [(ngModel)]="receipt" class="file-path validate" type="text" name="receipt">
         </div>
+      </div>
+      <div class="col s3">
+        <button class="btn waves-effect waves-light col s12" type="submit" (click)="onSubmit()">Submit</button>
       </div>
      </div>
    </form>

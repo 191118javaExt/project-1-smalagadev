@@ -49,6 +49,15 @@
   	<servlet-name>UserServlet</servlet-name>
   	<url-pattern>/users</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>NewReimbursementServlet</servlet-name>
+  	<servlet-class>com.revature.web.NewReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>NewReimbursementServlet</servlet-name>
+  	<url-pattern>/new_reimbursements</url-pattern>
+  </servlet-mapping>
   	
   <servlet>
   	<servlet-name>ReimbursementServlet</servlet-name>
@@ -57,5 +66,14 @@
   <servlet-mapping>
   	<servlet-name> ReimbursementServlet</servlet-name>
   	<url-pattern>/reimbursements</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>UpdateReimbursementServlet</servlet-name>
+  	<servlet-class>com.revature.web.UpdateReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UpdateReimbursementServlet</servlet-name>
+  	<url-pattern>/update_reimbursements</url-pattern>
   </servlet-mapping>
 </web-app>

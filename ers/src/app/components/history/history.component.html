@@ -1,4 +1,4 @@
-<h1>Reimbursement History</h1>
+<h3>Reimbursement History</h3>
 <table class="striped responsive-table">
   <thead>
     <tr>
@@ -13,32 +13,24 @@
   </thead>
 
   <tbody>
-    <tr>
-      <td>Alvin</td>
-      <td>Eclair</td>
-      <td>$0.87</td>
-      <td>Alvin</td>
-      <td>Eclair</td>
-      <td>$0.87</td>
-      <td>$0.87</td>
-    </tr>
-    <tr>
-      <td>Alan</td>
-      <td>Jellybean</td>
-      <td>$3.76</td>
-      <td>Alvin</td>
-      <td>Eclair</td>
-      <td>$0.87</td>
-      <td>Alvin</td>
-    </tr>
-    <tr>
-      <td>Jonathan</td>
-      <td>Lollipop</td>
-      <td>$7.00</td>
-      <td>Eclair</td>
-      <td>$0.87</td>
-      <td>$0.87</td>
-      <td>Alvin</td>
+    <tr *ngFor="let r of reimbursementHistory">
+      <td>{{ r.id }}</td>
+      <td>{{ r.submitted }}</td>
+      <td [ngSwitch]="r.type_id">
+        <span *ngSwitchCase="0">Lodging</span>
+        <span *ngSwitchCase="1">Travel</span>
+        <span *ngSwitchCase="2">Food</span>
+        <span *ngSwitchCase="3">Other</span>
+      </td>
+      <td>${{ r.amount }}</td>
+      <td>{{ r.description }}</td>
+      <td [ngSwitch]="r.status_id">
+        <span *ngSwitchCase="0">Pending</span>
+        <span *ngSwitchCase="1">Approved</span>
+        <span *ngSwitchCase="2">Denied</span>
+      </td>
+      <td>{{ r.resolved }}</td>
     </tr>
   </tbody>
 </table>
+<p class="center" *ngIf="reimbursementHistory == null"> Nothing to display</p>

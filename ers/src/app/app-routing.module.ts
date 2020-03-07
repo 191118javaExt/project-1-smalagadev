@@ -2,27 +2,21 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
-import { NewReimbursementComponent } from './components/new-reimbursement/new-reimbursement.component';
-import { HistoryComponent } from './components/history/history.component';
-import { ManageReimbursementsComponent } from './components/manage-reimbursements/manage-reimbursements.component';
-
+import { ManagerHomeComponent } from './components/manager-home/manager-home.component';
+import { WelcomeComponent} from './components/welcome/welcome.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: WelcomeComponent
+  },
   {
     path: 'home',
     component: HomeComponent
   },
   {
-    path: 'new_reimbursement',
-    component: NewReimbursementComponent
-  },
-  {
-    path: 'history',
-    component: HistoryComponent
-  },
-  {
-    path: 'manage_reimbursements',
-    component: ManageReimbursementsComponent
+    path: 'manager_home',
+    component: ManagerHomeComponent
   }
 ];
 

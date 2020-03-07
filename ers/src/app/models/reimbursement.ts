@@ -4,7 +4,7 @@ export class Reimbursement {
   // submitted: LocalDate;
   // resolved: LocalDate;
   description: string;
-  //	receipt: ,
+  receipt: any; // will change
   author: number;
   resolver: number;
   status_id: number;

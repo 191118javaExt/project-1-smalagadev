@@ -1,14 +1,16 @@
 package com.revature.models;
 
-import java.time.LocalDate;
+
+import java.io.ObjectInputStream;
+import java.util.Date;
 
 public class Reimbursement {
 	private int id;
-	private double amound;
-	private LocalDate submitted;
-	private LocalDate resolved;
+	private double amount;
+	private Date submitted;
+	private Date resolved;
 	private String description;
-//	private receipt
+	private ObjectInputStream receipt;
 	private int author;
 	private int resolver;
 	private int status_id;
@@ -17,12 +19,56 @@ public class Reimbursement {
 	public Reimbursement() {
 		super();
 	}
+	
+	public Reimbursement(int id, int resolver, int status_id) {
+		super();
+		this.id = id;
+		this.resolver = resolver;
+		this.status_id = status_id;
+	}
 
-	public Reimbursement(int id, double amound, LocalDate submitted, LocalDate resolved, String description, int author,
+	public Reimbursement(double amount, String description, ObjectInputStream objectInputStream, int author,
+			int type_id) {
+		super();
+		this.amount = amount;
+		this.description = description;
+		this.receipt = objectInputStream;
+		this.author = author;
+		this.type_id = type_id;
+	}
+
+
+
+	public Reimbursement(int id, double amount, Date submitted, Date resolved, String description,
+			int status_id, int type_id) {
+		super();
+		this.id = id;
+		this.amount = amount;
+		this.submitted = submitted;
+		this.resolved = resolved;
+		this.description = description;
+		this.status_id = status_id;
+		this.type_id = type_id;
+	}
+
+	public Reimbursement(int id, double amount, Date submitted, Date resolved, String description, int author,
+			int status_id, int type_id) {
+		super();
+		this.id = id;
+		this.amount = amount;
+		this.submitted = submitted;
+		this.resolved = resolved;
+		this.description = description;
+		this.author = author;
+		this.status_id = status_id;
+		this.type_id = type_id;
+	}
+
+	public Reimbursement(int id, double amount, Date submitted, Date resolved, String description, int author,
 			int resolver, int status_id, int type_id) {
 		super();
 		this.id = id;
-		this.amound = amound;
+		this.amount = amount;
 		this.submitted = submitted;
 		this.resolved = resolved;
 		this.description = description;
@@ -31,13 +77,110 @@ public class Reimbursement {
 		this.status_id = status_id;
 		this.type_id = type_id;
 	}
+	
+	
+
+	public Reimbursement(int id, double amount, Date submitted, Date resolved, String description,
+			ObjectInputStream receipt, int author, int resolver, int status_id, int type_id) {
+		super();
+		this.id = id;
+		this.amount = amount;
+		this.submitted = submitted;
+		this.resolved = resolved;
+		this.description = description;
+		this.receipt = receipt;
+		this.author = author;
+		this.resolver = resolver;
+		this.status_id = status_id;
+		this.type_id = type_id;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public Date getSubmitted() {
+		return submitted;
+	}
+
+	public void setSubmitted(Date submitted) {
+		this.submitted = submitted;
+	}
+
+	public Date getResolved() {
+		return resolved;
+	}
+
+	public void setResolved(Date resolved) {
+		this.resolved = resolved;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public ObjectInputStream getReceipt() {
+		return receipt;
+	}
+
+	public void setReceipt(ObjectInputStream receipt) {
+		this.receipt = receipt;
+	}
+
+	public int getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(int author) {
+		this.author = author;
+	}
+
+	public int getResolver() {
+		return resolver;
+	}
+
+	public void setResolver(int resolver) {
+		this.resolver = resolver;
+	}
+
+	public int getStatus_id() {
+		return status_id;
+	}
+
+	public void setStatus_id(int status_id) {
+		this.status_id = status_id;
+	}
+
+	public int getType_id() {
+		return type_id;
+	}
+
+	public void setType_id(int type_id) {
+		this.type_id = type_id;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		long temp;
-		temp = Double.doubleToLongBits(amound);
+		temp = Double.doubleToLongBits(amount);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + author;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
@@ -59,7 +202,7 @@ public class Reimbursement {
 		if (getClass() != obj.getClass())
 			return false;
 		Reimbursement other = (Reimbursement) obj;
-		if (Double.doubleToLongBits(amound) != Double.doubleToLongBits(other.amound))
+		if (Double.doubleToLongBits(amount) != Double.doubleToLongBits(other.amount))
 			return false;
 		if (author != other.author)
 			return false;
@@ -91,7 +234,7 @@ public class Reimbursement {
 
 	@Override
 	public String toString() {
-		return "Reimbursement [id=" + id + ", amound=" + amound + ", submitted=" + submitted + ", resolved=" + resolved
+		return "Reimbursement [id=" + id + ", amount=" + amount + ", submitted=" + submitted + ", resolved=" + resolved
 				+ ", description=" + description + ", author=" + author + ", resolver=" + resolver + ", status_id="
 				+ status_id + ", type_id=" + type_id + "]";
 	}

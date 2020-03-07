@@ -29,41 +29,57 @@ INSERT INTO User_Roles(role_id, role) VALUES(3, 'Accountant');
 
 CREATE TABLE Users(
 	users_id SERIAL PRIMARY KEY,
-  username VARCHAR(50),
-  password INTEGER,
-  first_name VARCHAR(100),
-  last_name VARCHAR(100),
-  email VARCHAR(100),
-  role_id INT,
+  username VARCHAR(50) NOT NULL,
+  password INTEGER NOT NULL,
+  first_name VARCHAR(100) NOT NULL,
+  last_name VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  role_id INT NOT NULL,
 	FOREIGN KEY(role_id) REFERENCES User_Roles(role_id)
 );
 
-INSERT INTO USERS (username, password, first_name, last_name, email, role_id) VALUES('jberrymore', 368540387, 'Jerry', 'Berrymore', 'jerry.berrymore@ers.com', 1);
+INSERT INTO Users (username, password, first_name, last_name, email, role_id) VALUES('jberrymore', 368540387, 'Jerry', 'Berrymore', 'jerry.berrymore@ers.com', 1);
 -- password - berrytime
-INSERT INTO USERS (username, password, first_name, last_name, email, role_id) VALUES('mbolton', 197113697, 'Michael', 'Bolton', 'michael.bolton@ers.com', 1);
+INSERT INTO Users (username, password, first_name, last_name, email, role_id) VALUES('mbolton', 197113697, 'Michael', 'Bolton', 'michael.bolton@ers.com', 1);
 -- password - notthatmichaelbolton
-INSERT INTO USERS (username, password, first_name, last_name, email, role_id) VALUES('amahoney', 1216985755, 'Alton', 'Mahoney', 'alton.mahoney@ers.com', 1);
+INSERT INTO Users (username, password, first_name, last_name, email, role_id) VALUES('amahoney', 1216985755, 'Alton', 'Mahoney', 'alton.mahoney@ers.com', 1);
 -- password - password
-INSERT INTO USERS (username, password, first_name, last_name, email, role_id) VALUES('chill', 1659762602, 'Carmen', 'Hill', 'carmen.hill@ers.com', 0);
+INSERT INTO Users (username, password, first_name, last_name, email, role_id) VALUES('chill', 1659762602, 'Carmen', 'Hill', 'carmen.hill@ers.com', 0);
 -- password - chillout
-INSERT INTO USERS (username, password, first_name, last_name, email, role_id) VALUES('tcrewes', 1438651681, 'Thomas', 'Crewes', 'thomas.crewes@ers.com', 2);
+INSERT INTO Users (username, password, first_name, last_name, email, role_id) VALUES('tcrewes', 1438651681, 'Thomas', 'Crewes', 'thomas.crewes@ers.com', 2);
 -- password - missionimpossible
-INSERT INTO USERS (username, password, first_name, last_name, email, role_id) VALUES('achocula', -1022649593, 'Aaron', 'Chocula', 'aaron.chocula@ers.com', 3);
+INSERT INTO Users (username, password, first_name, last_name, email, role_id) VALUES('achocula', -1022649593, 'Aaron', 'Chocula', 'aaron.chocula@ers.com', 3);
 -- password - countmeout
 
-CREATE TABLE Reimbursement (
+CREATE TABLE Reimbursements (
 	reimbursement_id SERIAL PRIMARY KEY,
-	amount DECIMAL,
-	submitted TIMESTAMP DEFAULT GETDATE(),
+	amount DECIMAL CHECK (amount > 0),
+	submitted TIMESTAMP DEFAULT current_date,
 	resolved TIMESTAMP,
 	description VARCHAR(250),
 	receipt BYTEA,
-	author INTEGER,
+	author INTEGER NOT NULL,
 	resolver INTEGER,
 	status_id INTEGER DEFAULT 0,
-	type_id INTEGER,
+	type_id INTEGER NOT NULL,
 	FOREIGN KEY(author) REFERENCES Users(users_id),
 	FOREIGN KEY(resolver) REFERENCES Users(users_id),
 	FOREIGN KEY(status_id) REFERENCES Status(status_id),
 	FOREIGN KEY(type_id) REFERENCES Reimbursement_Type(type_id)
 );
+
+INSERT INTO Reimbursements (amount, description, submitted, author, status_id, type_id) VALUES (300, 'Relocation', '2019-12-12 00:00:00', 2, 1, 1);
+INSERT INTO Reimbursements (amount, description, submitted, author, status_id, type_id) VALUES (300, 'Relocation', '2019-11-27 00:00:00', 3, 1, 1);
+INSERT INTO Reimbursements (amount, description, submitted, author, status_id, type_id) VALUES (300, 'Relocation', '2019-01-02 00:00:00', 1, 1, 1);
+INSERT INTO Reimbursements (amount, description, submitted, author, status_id, type_id) VALUES (300, 'Relocation', '2019-12-25 00:00:00', 4, 1, 1);
+INSERT INTO Reimbursements (amount, description, resolved, author, status_id, type_id) VALUES (12500000, 'Ferrari', '2019-01-13 00:00:00', 3, 1, 3);
+INSERT INTO Reimbursements (amount, description, author, type_id) VALUES (1000, 'The Tampa Inn', 2, 0);
+INSERT INTO Reimbursements (amount, description, author, type_id) VALUES (1000, 'The Austin Inn', 3, 0);
+INSERT INTO Reimbursements (amount, description, author, type_id) VALUES (1000, 'The Houstin Inn', 1, 0);
+INSERT INTO Reimbursements (amount, description, author, type_id) VALUES (1000, 'The Tampa Inn', 4, 0);
+INSERT INTO Reimbursements (amount, description, author, type_id) VALUES (15.24, 'Hotel lunch', 2, 2);
+INSERT INTO Reimbursements (amount, description, author, type_id) VALUES (11.65, 'Hotel lunch', 3, 2);
+INSERT INTO Reimbursements (amount, description, author, type_id) VALUES (13.02, 'Hotel lunch', 1, 2);
+INSERT INTO Reimbursements (amount, description, author, type_id) VALUES (23.85, 'Hotel lunch', 4, 2);
+INSERT INTO Reimbursements (amount, description, author, type_id) VALUES (27.31, 'Hotel dinner', 3, 2);
+INSERT INTO Reimbursements (amount, description, author, type_id) VALUES (29.43, 'Fill up gas tank', 3, 1);

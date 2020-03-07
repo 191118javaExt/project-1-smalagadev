@@ -1,28 +1,24 @@
-<div id="Login" class="modal">
-  <div class="modal-content">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
-          <label for="email">Email</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password">Password</label>
-        </div>
-      </div>
-      <div class="row">
-        <button class="btn waves-effect waves-light" type="submit" (click)="logIn()">
-          Log In
-          <!-- <i class="material-icons right">send</i> -->
-        </button>
-        <button class="btn waves-effect waves-light grey lighten-1" (click)="close()">
-          Cancel
-          <!-- <i class="material-icons right">send</i> -->
-        </button>
-      </div>
-    </form>
+<form class="col s12">
+  <div class="row">
+    <div class="input-field col s12">
+      <input [(ngModel)]="username" id="username" type="text" class="validate" name="username" required>
+      <label for="username">Username</label>
+    </div>
   </div>
-</div>
+  <div class="row">
+    <div class="input-field col s12">
+      <input [(ngModel)]="password" id="password" type="password" class="validate" name="password" required>
+      <label for="password">Password</label>
+    </div>
+  </div>
+  <div class="row">
+    <button class="btn waves-effect waves-light" type="submit" (click)="logIn()">
+      Log In
+      <!-- <i class="material-icons right">send</i> -->
+    </button>
+    <button class="btn waves-effect waves-light grey lighten-1" (click)="close()">
+      Cancel
+      <!-- <i class="material-icons right">send</i> -->
+    </button>
+  </div>
+</form>

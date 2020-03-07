@@ -1,4 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -7,7 +10,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 
 export class LoginFormComponent implements OnInit {
-  constructor() { }
+  constructor(private us: UserService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -16,23 +19,31 @@ export class LoginFormComponent implements OnInit {
 
   @Output() public loggedIn = new EventEmitter();
 
+  username: string = "";
+  password: string = "";
+
   logIn(): void {
     event.preventDefault();
-    // if successful
-    this.isLoggedIn = true;
-    this.loggedIn.emit(this.isLoggedIn);
-    // If successful close modal
-    const loginForm = document.getElementById('Login');
-    // Returns error because TypeScript does not recognize Materialize CDN in HTML file
-    const instances = M.Modal.init(loginForm).close();
-  }
 
-  close(): void {
-    event.preventDefault();
-    // If successful close modal
-    const loginForm = document.getElementById('Login');
-    // Returns error because TypeScript does not recognize Materialize CDN in HTML file
-    const instances = M.Modal.init(loginForm).close().outDuration();
+    //HTTP Request
+    this.us.login(this.username, this.password).subscribe(
+      (response: User) => {
+        sessionStorage.setItem('currentUser', JSON.stringify(response));
+
+
+        if(response != null){
+          this.username="";
+          this.password="";
+
+          if(response.role_id == 0){
+            this.router.navigate(['/manager_home']); //use to forward to next page
+          }
+          else{
+            this.isLoggedIn = true;
+            this.router.navigate(['/home']); //use to forward to next page
+          }
+        }
+      });
   }
 
 }

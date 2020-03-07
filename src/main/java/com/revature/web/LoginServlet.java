@@ -51,9 +51,7 @@ public class LoginServlet extends HttpServlet {
 		String password = loginAttempt.getPassword();
 		
 		logger.info(username + " attempted to log in.");
-		System.out.println("password: " + password);
 
-		System.out.println("password hashcoded: " + password.hashCode());
 		User u = UserService.login(username, password);
 		
 		if(u != null) {

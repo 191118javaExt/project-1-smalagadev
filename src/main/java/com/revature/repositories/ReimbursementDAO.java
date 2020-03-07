@@ -9,5 +9,5 @@ public interface ReimbursementDAO {
 	public Reimbursement findById(int id);
 	public boolean insert(Reimbursement r);
 	public boolean update(Reimbursement r);
-	public boolean delete(Reimbursement r);
+	public List<Reimbursement> findAllByAuthorId(int author_id);
 }
